@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 type Session = { user: { name: string; email: string }; canManage: boolean };
 type Member = { email: string; name: string };
+const DEMO_USERNAME = "demo";
+const DEMO_EMAIL = "demo@tigotek.example";
 async function api<T = unknown>(path: string, body?: unknown) {
   const response = await fetch(path, {
     method: body ? "POST" : "GET",
@@ -116,10 +118,14 @@ function WorkspaceAccess({ children }: { children: ReactNode }) {
         setMode("signin");
         setNotice("Password updated. Sign in to continue.");
       } else {
+        const loginEmail =
+          mode === "signin" && email.trim().toLowerCase() === DEMO_USERNAME
+            ? DEMO_EMAIL
+            : email;
         await api(
           `/api/auth/${mode === "signup" ? "sign-up" : "sign-in"}/email`,
           {
-            email,
+            email: loginEmail,
             password: form.get("password"),
             ...(mode === "signup" ? { name: form.get("name") } : {}),
             callbackURL: location.origin,
@@ -222,11 +228,11 @@ function WorkspaceAccess({ children }: { children: ReactNode }) {
           )}
           {mode !== "reset" && (
             <label>
-              Email address
+              {mode === "signin" ? "Username or email" : "Email address"}
               <input
-                type="email"
+                type={mode === "signin" ? "text" : "email"}
                 name="email"
-                autoComplete="email"
+                autoComplete={mode === "signin" ? "username" : "email"}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -294,6 +300,11 @@ function WorkspaceAccess({ children }: { children: ReactNode }) {
             )}
           </button>
         </form>
+        {mode === "signin" && (
+          <p className="access-notice" aria-label="Demo login credentials">
+            Demo login: Username <b>demo</b> · Password <b>demo1234</b>
+          </p>
+        )}
         <div className="access-options">
           {mode === "verify" && (
             <button
