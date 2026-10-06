@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>FABRIPASS — Every product has a story</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #f2f3eb;
+        color: #253e32;
+        font:
+          14px/1.6 Arial,
+          sans-serif;
+      }
+      button,
+      a {
+        font: inherit;
+        cursor: pointer;
+        color: inherit;
+      }
+      a {
+        text-decoration: none;
+      }
+      button {
+        border: 0;
+      }
+      nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 25px 6%;
+        border-bottom: 1px solid #274e3620;
+      }
+      .brand {
+        font-size: 19px;
+        letter-spacing: -1px;
+        font-weight: 600;
+      }
+      .brand i {
+        font-family: Georgia, serif;
+        font-size: 29px;
+        margin-right: 9px;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 23px;
+        font-size: 12px;
+      }
+      .nav-links a:last-child {
+        padding: 8px 14px;
+        border: 1px solid #82937f;
+        border-radius: 3px;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 40px;
+        padding: 65px 7% 55px;
+        align-items: center;
+      }
+      .eyebrow {
+        font-size: 9px;
+        letter-spacing: 1.8px;
+        font-weight: 600;
+        color: #778d76;
+      }
+      h1 {
+        font:
+          clamp(34px, 5vw, 65px)/1.03 Georgia,
+          serif;
+        letter-spacing: -2.3px;
+        margin: 25px 0;
+      }
+      h1 em {
+        font-weight: 400;
+        color: #829679;
+      }
+      p {
+        font-size: 14px;
+        line-height: 1.9;
+        color: #73816c;
+        max-width: 350px;
+      }
+      .cta {
+        display: inline-block;
+        background: #2c4c3c;
+        color: #ecf0e2;
+        padding: 12px 19px;
+        border-radius: 3px;
+        margin-top: 18px;
+        font-size: 12px;
+      }
+      .subcta {
+        display: inline-block;
+        font-size: 11px;
+        margin-left: 13px;
+        border-bottom: 1px solid #657762;
+      }
+      .passport {
+        background: #fdfdf7;
+        border: 1px solid #79947330;
+        box-shadow: 15px 20px 0 #c9d4bd55;
+        padding: 25px;
+        transform: rotate(2deg);
+        max-width: 300px;
+        margin: auto;
+      }
+      .passport > header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #28413120;
+        padding-bottom: 14px;
+        color: #7e9379;
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+      .verified {
+        padding: 3px 6px;
+        border: 1px solid #83977950;
+        border-radius: 2px;
+      }
+      .material {
+        height: 105px;
+        background: repeating-linear-gradient(
+          0deg,
+          #cdc8ae 0,
+          #cdc8ae 2px,
+          #d7d2ba 2px,
+          #d7d2ba 5px
+        );
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #8b876b;
+        font:
+          50px Georgia,
+          serif;
+        letter-spacing: -3px;
+      }
+      .passport h2 {
+        font:
+          25px Georgia,
+          serif;
+        margin: 16px 0 6px;
+      }
+      .passport p {
+        font-size: 10px;
+        margin: 0 0 15px;
+      }
+      .passport dl {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        row-gap: 10px;
+        font-size: 10px;
+        margin: 0;
+      }
+      .passport dt {
+        color: #95a18b;
+      }
+      .passport dd {
+        margin: 0;
+        text-align: right;
+        color: #2c4c3c;
+      }
+      .passport footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid #28413120;
+        padding-top: 17px;
+        margin-top: 19px;
+        font-size: 8px;
+        color: #8c9d84;
+      }
+      .passport button {
+        padding: 8px 10px;
+        background: #e7edde;
+        border: 1px solid #9baa8f55;
+        border-radius: 3px;
+        font-size: 10px;
+      }
+      .trust {
+        display: flex;
+        justify-content: space-around;
+        gap: 15px;
+        border-top: 1px solid #2a503820;
+        border-bottom: 1px solid #2a503820;
+        padding: 22px 6%;
+        font-size: 10px;
+        letter-spacing: 1px;
+        color: #72816b;
+      }
+      .details {
+        padding: 45px 7%;
+      }
+      .details h2 {
+        font:
+          36px/1.2 Georgia,
+          serif;
+        letter-spacing: -1px;
+      }
+      .detail-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 25px;
+        margin-top: 30px;
+      }
+      .detail-grid h3 {
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .detail-grid p {
+        font-size: 12px;
+      }
+      .detail-grid article {
+        border-top: 1px solid #8c9a7d66;
+        padding-top: 20px;
+      }
+      .detail-grid article > span {
+        font-size: 10px;
+        color: #98a189;
+      }
+      .demo-footer {
+        padding: 30px 7%;
+        border-top: 1px solid #2a503820;
+        color: #8b9c80;
+        font-size: 11px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .review-mode [data-feedback] {
+        cursor: crosshair;
+      }
+      .review-mode [data-feedback]:hover {
+        outline: 2px dashed #b19a64;
+        outline-offset: 5px;
+      }
+      .pin {
+        position: absolute;
+        z-index: 100;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: #caac70;
+        color: #182723;
+        border: 2px solid #fff;
+        font-size: 11px;
+        font-weight: bold;
+        box-shadow: 0 2px 6px #0003;
+        transform: translate(-50%, -50%);
+      }
+      .pin.resolved {
+        background: #8da485;
+      }
+      #passport-history {
+        background: #e8eddf;
+        padding: 13px;
+        font-size: 11px;
+        margin-top: 15px;
+        line-height: 1.9;
+      }
+      #passport-history[hidden] {
+        display: none;
+      }
+      #partner-note {
+        padding: 15px;
+        background: #e5eadc;
+        border: 1px solid #b7c6ac;
+        color: #4d654b;
+        margin-top: 20px;
+        font-size: 13px;
+      }
+      a:focus-visible,
+      button:focus-visible {
+        outline: 3px solid #ad9259;
+        outline-offset: 4px;
+      }
+      @media (max-width: 600px) {
+        nav {
+          padding: 19px 6%;
+        }
+        .brand {
+          font-size: 16px;
+        }
+        .nav-links a:not(:last-child) {
+          display: none;
+        }
+        .nav-links {
+          font-size: 10px;
+        }
+        .hero {
+          grid-template-columns: 1fr;
+          padding: 40px 7%;
+          gap: 40px;
+        }
+        h1 {
+          font-size: 46px;
+        }
+        .hero p {
+          font-size: 14px;
+        }
+        .passport {
+          width: 90%;
+          max-width: 320px;
+          padding: 23px;
+        }
+        .material {
+          height: 115px;
+        }
+        .trust {
+          flex-wrap: wrap;
+          font-size: 9px;
+          gap: 13px;
+        }
+        .details {
+          padding: 35px 7%;
+        }
+        .details h2 {
+          font-size: 31px;
+        }
+        .detail-grid {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+        .detail-grid p {
+          font-size: 13px;
+        }
+        .demo-footer {
+          font-size: 10px;
+          gap: 15px;
+        }
+        .subcta {
+          font-size: 11px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav data-feedback="navigation">
+      <a class="brand" href="#"><i>f.</i>fabripass®</a>
+      <div class="nav-links">
+        <a href="#story">Our approach</a><a href="#passport">The passport</a
+        ><a href="#partner" id="partner-link">For brands</a>
+      </div>
+    </nav>
+    <main>
+      <section class="hero" data-feedback="hero-section">
+        <div>
+          <span class="eyebrow">TRANSPARENCY IS A GOOD LOOK.</span>
+          <h1 data-feedback="hero-heading">
+            Every product<br />has a story.<br /><em>Know yours.</em>
+          </h1>
+          <p data-feedback="hero-description">
+            From the first thread to the next chapter. Discover where your
+            products come from, what they’re made of, and how to keep them
+            going.
+          </p>
+          <a class="cta" href="#passport">Explore a product passport</a
+          ><a class="subcta" href="#story">See how it works</a>
+        </div>
+        <article class="passport" data-feedback="passport-card" id="passport">
+          <header>
+            <span>DIGITAL PRODUCT PASSPORT</span
+            ><span class="verified">✓ VERIFIED</span>
+          </header>
+          <div class="material" aria-label="Natural cotton material sample">
+            100%
+          </div>
+          <span class="eyebrow">THE EVERYDAY COLLECTION</span>
+          <h2>The Essential Tee</h2>
+          <p>Thoughtfully made. Ready for your everyday.</p>
+          <dl>
+            <dt>Material</dt>
+            <dd>100% organic cotton</dd>
+            <dt>Origin</dt>
+            <dd>Dhaka, Bangladesh</dd>
+            <dt>Manufacturing partner</dt>
+            <dd>GreenThread Studio</dd>
+            <dt>Product reference</dt>
+            <dd>FP–026–001</dd>
+          </dl>
+          <footer>
+            <span>A STORY YOU CAN TRACE.</span
+            ><button
+              id="history-toggle"
+              aria-expanded="false"
+              aria-controls="passport-history"
+            >
+              View journey
+            </button>
+          </footer>
+          <div id="passport-history" hidden>
+            <b>Your product’s journey</b><br />01 · Cotton grown in India<br />02
+            · Spun and woven in Dhaka<br />03 · Made by GreenThread Studio<br />04
+            · Ready for its next chapter with you
+          </div>
+        </article>
+      </section>
+      <div class="trust" data-feedback="trust-strip">
+        <span>TRACEABLE BY DESIGN</span><span>MADE FOR CIRCULARITY</span
+        ><span>BUILT ON TRUST</span>
+      </div>
+      <section class="details" id="story" data-feedback="product-benefits">
+        <span class="eyebrow">LESS GUESSWORK. MORE GOOD.</span>
+        <h2>A little knowledge.<br />A longer life.</h2>
+        <div class="detail-grid">
+          <article>
+            <span>01 / KNOW</span>
+            <h3>The proof behind the promise.</h3>
+            <p>
+              Materials, makers, and meaningful details. All connected to the
+              product in your hands.
+            </p>
+          </article>
+          <article>
+            <span>02 / CARE</span>
+            <h3>Keep a good thing going.</h3>
+            <p>
+              Clear care instructions help your favourite products stay that way
+              for longer.
+            </p>
+          </article>
+          <article>
+            <span>03 / CONTINUE</span>
+            <h3>A next chapter, not an end.</h3>
+            <p>
+              Repair, resell, or responsibly recycle. Find the right next step
+              for every product.
+            </p>
+          </article>
+        </div>
+        <div id="partner-note" hidden>
+          FABRIPASS for brands: product traceability, customer care, and
+          circularity in one passport. This staging demo is ready for your
+          team’s feedback.
+        </div>
+      </section>
+    </main>
+    <footer class="demo-footer">
+      <span>FABRIPASS® · Made to be known.</span
+      ><span>Staging build #41 · Sample product</span>
+    </footer>
+    <script src="/review-bridge.js"></script>
+    <script>
+      document
+        .getElementById("history-toggle")
+        .addEventListener("click", function () {
+          const p = document.getElementById("passport-history");
+          p.hidden = !p.hidden;
+          this.setAttribute("aria-expanded", String(!p.hidden));
+          this.textContent = p.hidden ? "View journey" : "Close journey";
+        });
+      document
+        .getElementById("partner-link")
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          const n = document.getElementById("partner-note");
+          n.hidden = false;
+          n.scrollIntoView({ behavior: "smooth" });
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,165 @@
+/* A shared glass material; higher specificity preserves it over legacy panels. */
+:root {
+  --glass-ease: cubic-bezier(.22, 1, .36, 1);
+  --glass-spring: cubic-bezier(.2, .9, .24, 1.06);
+  --glass-edge: rgba(205, 228, 240, .16);
+  --glass-surface: rgba(21, 34, 44, .64);
+  --glass-shadow: 0 14px 44px #00000021, inset 0 1px 0 #e9f7ff19, inset 0 -1px 0 #00000026;
+}
+html body { background: #09121a; }
+html .portal {
+  background:
+    radial-gradient(ellipse at 16% 10%, #455e8847 0, transparent 40%),
+    radial-gradient(ellipse at 90% 36%, #34696733 0, transparent 40%),
+    radial-gradient(ellipse at 54% 94%, #a37d4430 0, transparent 45%),
+    #0b141d;
+  background-attachment: fixed;
+}
+html .workspace { background: transparent; }
+html .portal-sidebar [data-slot="sidebar-inner"] {
+  background: linear-gradient(150deg, #293d4859, #0b141bbf);
+  -webkit-backdrop-filter: blur(28px) saturate(135%);
+  backdrop-filter: blur(28px) saturate(135%);
+  border-right: 1px solid #d2eaf21a;
+  box-shadow: 12px 0 40px #00000010, inset -1px 0 0 #ffffff05;
+}
+html .topbar {
+  background: linear-gradient(100deg, #c0ddef08, #15202b52);
+  -webkit-backdrop-filter: blur(22px) saturate(130%);
+  backdrop-filter: blur(22px) saturate(130%);
+  border-bottom-color: #e1f2ff13;
+  box-shadow: inset 0 -1px 0 #00000015;
+}
+html :is(.office-panel, .preview-connect-card, .client-review-panel, .attention-panel, .approval-card, .task-card, .feedback-card, .progress-hero, .meeting-banner, .person-work, .upload-zone) {
+  --glass-x: 50%;
+  --glass-y: 15%;
+  background:
+    radial-gradient(ellipse at 50% 15%, #cee9ff0b, transparent 60%),
+    linear-gradient(135deg, #c3e4ff09, transparent 44%, #edc79804),
+    var(--glass-surface);
+  border: 1px solid var(--glass-edge);
+  border-radius: 18px;
+  box-shadow: var(--glass-shadow);
+  -webkit-backdrop-filter: blur(22px) saturate(125%);
+  backdrop-filter: blur(22px) saturate(125%);
+  transition: border-color 450ms var(--glass-ease), box-shadow 450ms var(--glass-ease), transform 500ms var(--glass-spring);
+}
+
+html .office-panel {
+  background:
+    radial-gradient(ellipse at 50% 15%, #9ccfff17, transparent 58%),
+    radial-gradient(ellipse at 50% 92%, #d4b78109, transparent 48%),
+    #13202ca8;
+  isolation: isolate;
+}
+
+html .office-toolbar { padding-top: 26px; }
+html .office-camera { transition: transform 1000ms var(--glass-ease); }
+html .office-floor { transition: opacity 460ms var(--glass-ease); }
+html .workstation { transition: filter 280ms var(--glass-ease); }
+html .floor-focus-label { transition: opacity 450ms var(--glass-ease), transform 600ms var(--glass-ease); }
+html .floor-navigation {
+  background: linear-gradient(140deg, #c1dfec10, #0b17219c);
+  border: 1px solid #d2e5f12b;
+  border-radius: 13px;
+  padding: 5px;
+  box-shadow: 0 8px 25px #0000002b, inset 0 1px 0 #ffffff12;
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+html .floor-navigation button { border-radius: 8px; }
+html .floor-navigation button.selected {
+  background: linear-gradient(140deg, #f3d4a432, #bfa47914);
+  box-shadow: inset 0 1px 0 #ffe4b938, 0 3px 10px #00000015;
+}
+html .project-switch {
+  border-radius: 13px;
+  background: linear-gradient(140deg, #d5edff10, #9dbbd505);
+  border-color: #d6ecfa20;
+  box-shadow: inset 0 1px 0 #ffffff13;
+}
+html .nav-item {
+  position: relative;
+  border-radius: 10px;
+  transition: background 350ms var(--glass-ease), color 250ms ease, border-color 350ms ease, transform 450ms var(--glass-spring), box-shadow 450ms ease;
+}
+html .nav-item.active {
+  background: linear-gradient(120deg, #dfbf8c23, #a7c8e80b);
+  border-color: #e9d4ad2b;
+  box-shadow: inset 0 1px 0 #ffe6bd1c, 0 4px 15px #00000015;
+  color: #f0d5a5;
+}
+html .nav-item.active:before { left: -11px; width: 2px; height: 17px; border-radius: 2px; box-shadow: 0 0 12px #f1cf9680; }
+html :is(.primary-button, .secondary-button, .icon-button) {
+  border-radius: 10px;
+  transition: transform 400ms var(--glass-spring), background 300ms ease, border-color 300ms ease, box-shadow 400ms ease, color 250ms ease;
+}
+html .primary-button {
+  background: linear-gradient(125deg, #efd2a2, #d5b27b);
+  border: 1px solid #fff1d655;
+  color: #1a211f;
+  box-shadow: inset 0 1px 0 #fff9e675, 0 4px 18px #d5b27b12;
+}
+html .secondary-button, html .icon-button {
+  background: linear-gradient(140deg, #dcf0ff0f, #8da9c805);
+  border-color: #d6ecfa20;
+  box-shadow: inset 0 1px 0 #ffffff0d;
+}
+html :is(.primary-button, .secondary-button, .icon-button):active:not(:disabled) { transform: translateY(0) scale(.97); }
+html .portal-sheet {
+  background: linear-gradient(130deg, #293f50db, #0d1921ed);
+  border-color: #deefff24;
+  box-shadow: -20px 0 80px #0000004d, inset 1px 0 0 #e6f5ff0f;
+  -webkit-backdrop-filter: blur(36px) saturate(135%);
+  backdrop-filter: blur(36px) saturate(135%);
+  animation-duration: 480ms;
+  animation-timing-function: var(--glass-ease);
+}
+html [data-slot="sheet-overlay"] { background: #050d1766; -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); }
+html :is(.route-view, .workspace-columns, .page-heading) { animation: glass-arrive 580ms var(--glass-ease) both; }
+html .task-detail { animation: glass-arrive 480ms var(--glass-ease) both; }
+@keyframes glass-arrive {
+  from { opacity: 0; transform: translateY(9px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+html [data-slot="tabs-list"] {
+  background: linear-gradient(135deg, #b5d4ee10, #08131b45);
+  border: 1px solid #daeeff16;
+  border-radius: 10px;
+  padding: 4px;
+  height: auto;
+  box-shadow: inset 0 1px 0 #ffffff0c;
+}
+html [data-slot="tabs-trigger"] { border-radius: 7px; transition: background 300ms var(--glass-ease), color 200ms ease, box-shadow 300ms ease; }
+html [data-slot="tabs-trigger"][data-state="active"] { background: linear-gradient(130deg, #d8ecff19, #d5ecff0b); border-color: #d2e9ff24; box-shadow: 0 3px 12px #00000020, inset 0 1px 0 #ffffff12; }
+html .command-center { border-top-color: #d8eaff17; border-bottom-color: #d8eaff17; }
+html .browser-stage { background: #0d17216b; border-color: #bfd9e624; border-radius: 16px; }
+html .browser-window { border-radius: 12px; box-shadow: 0 18px 50px #0000003d; transition: width 650ms var(--glass-ease); }
+html .browser-chrome { background: linear-gradient(110deg, #25394a, #1b2b37); }
+html :is(.preview-connect-form input, .preview-connect-form textarea, .client-review-panel input, .client-review-panel textarea, .saved-preview-link) { background: #08131b6b; border-color: #b9d6e62a; border-radius: 10px; box-shadow: inset 0 1px 5px #00000018; }
+html :is(input, textarea) { transition: border-color 250ms ease, box-shadow 300ms ease; }
+html :is(input, textarea):focus-visible { box-shadow: 0 0 0 3px #dfbd8710; }
+html .preview-link-emblem { background: linear-gradient(135deg, #edd6ad1c, #accbdf06); border-radius: 12px; box-shadow: inset 0 1px 0 #fff0d21a; }
+html .review-panel-heading h3, html .preview-connect-heading h3 { color: #e9f0f3; }
+@media (hover: hover) and (pointer: fine) {
+  html .nav-item:hover { transform: translateX(3px); background-color: #e0efff08; }
+  html :is(.primary-button, .secondary-button, .icon-button):hover:not(:disabled) { transform: translateY(-2px); border-color: #e5f3ff3d; box-shadow: 0 7px 20px #00000022, inset 0 1px 0 #ffffff25; }
+  html .primary-button:hover:not(:disabled) { background: linear-gradient(125deg, #f5dfbb, #dfbe8b); box-shadow: 0 6px 24px #dab77926, inset 0 1px 0 #ffffff70; }
+  html :is(.approval-card, .task-card):hover { transform: translateY(-3px); }
+}
+@media (max-width: 767px) {
+  html .portal { background-attachment: scroll; }
+  html :is(.office-panel, .preview-connect-card, .client-review-panel, .attention-panel, .approval-card, .task-card, .feedback-card, .progress-hero, .meeting-banner, .person-work, .upload-zone) { border-radius: 14px; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+  html .portal-sheet { border-radius: 18px 0 0 18px; }
+  html .nav-item.active:before { left: -7px; }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  html :is(.office-panel, .preview-connect-card, .client-review-panel, .attention-panel, .approval-card, .task-card, .feedback-card, .progress-hero, .meeting-banner, .person-work, .upload-zone) { background-color: #172631; }
+  html .portal-sidebar [data-slot="sidebar-inner"], html .portal-sheet { background-color: #12212c; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html *, html *::before, html *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  html :is(.nav-item, .primary-button, .secondary-button, .icon-button, .approval-card, .task-card):hover { transform: none; }
+}
+html .reduce-motion *, html .reduce-motion *::before, html .reduce-motion *::after { animation: none !important; transition: none !important; }
+html .reduce-motion :is(.nav-item, .primary-button, .secondary-button, .icon-button, .approval-card, .task-card):hover { transform: none; }
